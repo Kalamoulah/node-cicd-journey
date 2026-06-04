@@ -1,7 +1,32 @@
-Pipeline {
+pipeline {
+    agent any
 
+    stages {
+        stage('Install') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'npm test'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+    }
+
+    post {
+            success {
+            echo 'Succès !'
+            }
+        failure {
+            echo 'Échec !'
+        }
+    }
 }
-
-creée moi un quizz pour m'aider à preparer un entretien sur les source que je t'ai donner 
-le quizz dois comporter 30 question 
-à la fin tu dois me dire ext ce que j'ai eu le poste ou pas 
